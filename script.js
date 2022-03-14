@@ -1,5 +1,6 @@
 // 
 // computer choose random between paper rock scissors//
+
 function computerPlay() {
     let game = ["paper","rock","scissors"];
     let gameToUse = game[Math.floor(Math.random() * game.length)];
@@ -9,28 +10,45 @@ function computerPlay() {
 computerPlay();
 
 // player choose one of the option//
-function playRound(playerSelection, computerSelection) {
+function playRound(playerSelecTion, comPuterSelectIon) {
+     
+    if(playerSelecTion === comPuterSelectIon){
     
-    if(playerSelection === computerSelection){
         return ("Tie");
-    }else if(playerSelection === 'rock'){
-            if( computerSelection === 'scissors'){
-  
+    }else if(playerSelecTion === 'rock'){
+            if( comPuterSelectIon === 'scissors'){
+            userScore += 1 ; 
             return ("You win");
             }else{
-            return ("You lose");
+            computerScore+= 1;
+            return ("You loose");
     }
-    }else if(playerSelection === 'scissor' && computerSelection === 'paper'){
+    }else if(playerSelecTion === 'scissor' && comPuterSelectIon === 'paper'){
+        userScore += 1 ; 
         return ("You win");
     }else{
-        return ("You lose");
+        computerScore+=1;
+        return ("You loose");
+          
     }
 }
+let computerScore = 0;
+let userScore = 0; 
 playRound();
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playerSelection)
-console.log(computerSelection)
-console.log(playRound(playerSelection, computerSelection))
+let playerSelecTion = prompt("Pick a move");
+const comPuterSelectIon = computerPlay();
+console.log(playerSelecTion);
+console.log(comPuterSelectIon);
+console.log(playRound(playerSelecTion, comPuterSelectIon));
    
-// the game finish in one term with the winner declared// 
+// loop for 5 round// 
+
+
+for(var i=0;i<5;i++){
+    
+    let playerSelection = prompt("Pick a move");
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection))
+    console.log("your score = " + userScore);
+    console.log("Computer's score = " + computerScore);
+  }
