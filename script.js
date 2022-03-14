@@ -1,12 +1,21 @@
 // 
 // computer choose random between paper rock scissors//
 function computerPlay() {
-    const game = ["paper","rock","scissors"];
-    const gameToUse = game[Math.floor(math.random()* length)];
+    let game = ["paper","rock","scissors"]
+    let gameToUse = game[Math.floor(Math.random() * game.length)];
 
-    alert(gameToUse);
+    console.log(gameToUse);
 }
+computerPlay();
 
-console.log(gameToUse);
 // player choose one of the option//
+function playRound(playerSelection, computerSelection) {
+    if(computerSelection < playerSelection){
+        return ("You Lose! Paper beats Rock");
+    }
+}
+playRound();
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
 // the game finish in one term with the winner declared// 
