@@ -13,17 +13,18 @@ computerPlay();
 function playRound(playerSelection, computerSelection) {
    
     if(playerSelection === computerSelection){
-    
         return ("Tie");
     }else if(playerSelection === 'rock'){
-            if( computerSelection === 'scissors'){
+            if( computerSelection === 'scissors' ){
             userScore += 1 ; 
             return ("You win");
             }else{
             computerScore+= 1;
             return ("You loose");
-    }
-    }else if(playerSelection === 'scissor' && computerSelection === 'paper'){
+            } 
+    }else if(playerSelection === 'scissor' && computerSelection === 'paper'||
+     playerSelection === 'paper' && computerSelection === 'rock'){
+        
         userScore += 1 ; 
         return ("You win");
     }else{
