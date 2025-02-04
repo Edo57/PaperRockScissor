@@ -1,59 +1,53 @@
-// 
-// computer choose random between paper rock scissors//
-
 function computerPlay() {
-    let game = ["paper","rock","scissors"];
+    let game = ["paper", "rock", "scissors"];
     let gameToUse = game[Math.floor(Math.random() * game.length)];
-        return gameToUse;
-    
+    return gameToUse;
 }
-computerPlay();
 
-// player choose one of the option//
 function playRound(playerSelection, computerSelection) {
-   
-    if(playerSelection === computerSelection){
-        return ("Tie");
-    }else if(playerSelection === 'rock'){
-            if( computerSelection === 'scissors' ){
-            userScore += 1 ; 
-            return ("You win");
-            }else{
-            computerScore+= 1;
-            return ("You loose");
-            } 
-    }else if(playerSelection === 'scissor' && computerSelection === 'paper'||
-     playerSelection === 'paper' && computerSelection === 'rock'){
-        
-        userScore += 1 ; 
-        return ("You win");
-    }else{
-        computerScore+=1;
-        return ("You loose");
-          
+    if (playerSelection === computerSelection) {
+        return "Tie";
+    } else if (playerSelection === 'rock') {
+        if (computerSelection === 'scissors') {
+            userScore += 1;
+            return "You win! Rock beats Scissors";
+        } else {
+            computerScore += 1;
+            return "You lose! Rock loses to Paper";
+        }
+    } else if (playerSelection === 'scissors' && computerSelection === 'paper' ||
+               playerSelection === 'paper' && computerSelection === 'rock') {
+        userScore += 1;
+        return "You win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection;
+    } else {
+        computerScore += 1;
+        return "You lose! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " loses to " + computerSelection;
     }
 }
-let computerScore = 0;
-let userScore = 0; 
-playRound();
-let playerSelection = prompt("Pick a move");
-const computerSelection = computerPlay();
-console.log(playerSelection);
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
-   
-// loop for 5 round// 
 
-function game(){
-    for(var i=0;i<5;i++){
-    
-        let playerSelection = prompt("Pick a move");
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("your score = " + userScore);
-        console.log("Computer's score = " + computerScore);
-        console.log(playerSelection);
-        console.log(computerSelection);
-      }
+let computerScore = 0;
+let userScore = 0;
+
+function updateResult(message) {
+    document.getElementById('result').innerHTML = `
+        <p>${message}</p>
+        <p>Your score: ${userScore}</p>
+        <p>Computer's score: ${computerScore}</p>
+    `;
 }
-game();
+
+document.getElementById('rock').addEventListener('click', function() {
+    game('rock');
+});
+document.getElementById('paper').addEventListener('click', function() {
+    game('paper');
+});
+document.getElementById('scissors').addEventListener('click', function() {
+    game('scissors');
+});
+
+function game(playerSelection) {
+    const computerSelection = computerPlay();
+    const resultMessage = playRound(playerSelection, computerSelection);
+    updateResult(resultMessage);
+}
